@@ -2,6 +2,7 @@ const int ledBluePin = 10;
 const int ledYellowPin = 11;
 const int ledRedPin = 9;
 const int sensorPin  = A1;
+const int micPin  = A4;
 const int numReadings = 10;
 int photoreadings[numReadings];
 
@@ -17,6 +18,5 @@ void loop(){
         analogWrite(ledYellowPin, sensorValue);
         analogWrite(ledBluePin, 255-sensorValue);
         analogWrite(ledRedPin, sensorValue);
-
-        Serial.println(sensorValue);
+        Serial.println(analogRead(A4));
 }
