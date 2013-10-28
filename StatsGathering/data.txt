@@ -1,0 +1,17 @@
+
+Time: 13:41
+ min: 414
+ max: 681
+
+Time: 14:41
+ min: 637
+ max: 919
+
+Time: 15:41
+ min: 918
+ max: 1023
+
+Time: 16:41
+ min: 509
+ max: 1023
+

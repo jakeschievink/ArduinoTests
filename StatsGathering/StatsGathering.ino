@@ -17,12 +17,13 @@ void loop(){
                 minv = pinVal;
         }
         //Serial.println(millis()-starttime);
-        if((millis() - starttime) > 10000){
+        if((millis() - starttime) > 3600000){
                 Serial.print("min: ");
                 Serial.println(minv);
                 Serial.print("max: ");
                 Serial.println(maxv);
-                Serial.print("st: ");
+                minv = 10000;
+                maxv = 0;
                 starttime = millis();
         }
         delay(1000);
