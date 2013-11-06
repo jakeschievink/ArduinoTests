@@ -5,6 +5,7 @@ const int sensorPin  = A1;
 const int micPin  = A4;
 const int numReadings = 10;
 int photoreadings[numReadings];
+int volume;
 
 int sensorValue = 0;
 void setup(){
@@ -16,7 +17,7 @@ void setup(){
 void loop(){
         sensorValue = map(analogRead(sensorPin),0,1024, 0, 255);
         analogWrite(ledYellowPin, sensorValue);
-        analogWrite(ledBluePin, 255-sensorValue);
+        analogWrite(ledBluePin,255-sensorValue);
         analogWrite(ledRedPin, sensorValue);
-        Serial.println(analogRead(A4));
+        Serial.println(sensorValue);
 }

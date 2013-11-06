@@ -4,6 +4,7 @@ int pinVal = 0;
 int maxv = 0;
 int minv = 1000;
 long starttime = millis();
+Thermistor temp(0);
 
 void setup(){
                 Serial.begin(9600);
