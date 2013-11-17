@@ -6,9 +6,9 @@
 
 const int defaulttime = 25;
 int buttonStat = 0;
-int blinks = 0;
 long time;
 long fourth;
+long begintime;
 long endtime;
 long blinkint;
 boolean butready = true;
@@ -29,8 +29,9 @@ void loop(){
                 if(pressed){
                         endtime = time+((long)(defaulttime*MINUTE) );
                         starttimer = true;
-                        fourth = time+((long)(defaulttime*MINUTE)/4);
-                        blinkint = fourth;
+                        begintime = time;
+                        fourth = ((long)(defaulttime*MINUTE)/4);
+                        blinkint = time+fourth;
                         digitalWrite(BLINKLED, LOW);
                         digitalWrite(WORKINGLED, HIGH);
                         pressed = false;
@@ -50,12 +51,11 @@ void loop(){
                         #ifdef DEBUG
                                 Serial.print("timeleft");
                                 Serial.println(endtime-time);
+                                Serial.println((int)(time-begintime)/fourth);
                         #endif
                         if(blinkint-time < 0){
-                                Serial.print((int)time/forth);
-                                blinks++;
-                                blink();
-                                blinkint = time+forth;
+                                blink((int)(time-begintime)/fourth);
+                                blinkint = time+fourth;
                                 
                         
                         }
@@ -63,7 +63,6 @@ void loop(){
                 }
                 else{
                         digitalWrite(WORKINGLED, LOW);
-                        blinks = 0;
                         starttimer = false; 
                 }
         }
