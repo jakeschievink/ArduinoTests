@@ -52,7 +52,7 @@ void loop(){
                         if(fourth-time < 0){
                                 Serial.print("ONEFORRRRRRTH");
                                 blinks++;
-                                blink(blinks);
+                                blink();
                                 fourth = time+((long)(defaulttime*MINUTE)/4);
                                 
                         

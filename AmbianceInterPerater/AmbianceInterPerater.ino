@@ -1,4 +1,5 @@
 #include <Thermistor.h>
+#define DEBUG
 
 //pinSetups
 const int ledBluePin = 10;
@@ -31,27 +32,36 @@ void loop(){
         photoReading = analogRead(sensorPin);
         photoReadingPos = insert(photoReadings, photoReading, photoReadingPos);
         photoValue = map(average(photoReadings),0,1024, 0, 255);
-        Serial.print("photo: ");
-        Serial.println(photoValue);
 
         micReading = abs(analogRead(micPin)-800);
-        Serial.print("mic: ");
-        Serial.println(micReading);
         micReadingPos = insert(micReadings, micReading, micReadingPos);
         micValue = average(micReadings);
 
         tempReading = int(temp.getTemp());
-        Serial.println(tempReading);
         tempValue = map(tempReading, 155, 200, 0, 255);
 
         //writing to Leds
+        writetoLeds();
+
+        #if defined DEBUG
+                Serial.print("photo: ");
+                Serial.println(photoValue);
+                Serial.print("mic: ");
+                Serial.println(micReading);
+                Serial.print("Temp:");
+                Serial.println(tempReading);
+        #endif
+
+        delay(1000);
+}
+void writetoLeds(){
         analogWrite(ledWhitePin, photoValue);
         analogWrite(ledBluePin,255-photoValue);
         analogWrite(ledYellowPin, micValue);
         analogWrite(ledRedPin, tempValue);
-
-        delay(1000);
 }
+
+
 int insert(int arr[], int item, int pos){
         if(pos == 11){
                 return 0;
@@ -63,7 +73,7 @@ int insert(int arr[], int item, int pos){
 }
 int average(int arr[]){
         int total = 0;
-        for(int i = 0; i < numReadings; i = i + 1) {
+        for(int i = 0; i < numReadings; i++) {
                 total += arr[i];
         }
         return total/numReadings;
