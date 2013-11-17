@@ -2,7 +2,7 @@
 #define WORKINGLED 2
 #define BUTTON 11
 #define DEBUG 0
-#define MINUTE 60000
+#define MINUTE 600
 
 const int defaulttime = 25;
 int buttonStat = 0;
@@ -10,6 +10,7 @@ int blinks = 0;
 long time;
 long fourth;
 long endtime;
+long blinkint;
 boolean butready = true;
 boolean starttimer = false; 
 boolean pressed = false;
@@ -29,6 +30,7 @@ void loop(){
                         endtime = time+((long)(defaulttime*MINUTE) );
                         starttimer = true;
                         fourth = time+((long)(defaulttime*MINUTE)/4);
+                        blinkint = fourth;
                         digitalWrite(BLINKLED, LOW);
                         digitalWrite(WORKINGLED, HIGH);
                         pressed = false;
@@ -49,11 +51,11 @@ void loop(){
                                 Serial.print("timeleft");
                                 Serial.println(endtime-time);
                         #endif
-                        if(fourth-time < 0){
-                                Serial.print("ONEFORRRRRRTH");
+                        if(blinkint-time < 0){
+                                Serial.print((int)time/forth);
                                 blinks++;
                                 blink();
-                                fourth = time+((long)(defaulttime*MINUTE)/4);
+                                blinkint = time+forth;
                                 
                         
                         }
