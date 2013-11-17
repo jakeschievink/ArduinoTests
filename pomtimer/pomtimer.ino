@@ -2,7 +2,7 @@
 #define WORKINGLED 2
 #define BUTTON 11
 #define DEBUG 0
-#define MINUTE 600
+#define MINUTE 60000
 
 const int defaulttime = 25;
 int buttonStat = 0;
